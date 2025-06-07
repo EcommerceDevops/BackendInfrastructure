@@ -35,3 +35,9 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+.terraform.lock.hcl
+
+# Ignore sensitive files
+# These files may contain sensitive information such as API keys, secrets, or other credentials.
+.env
+terraform-backend-key.json
