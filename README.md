@@ -4,6 +4,25 @@
 
 When creating the infrastructure, make sure that you have created a .env file on the root and a service account with the structure specified on the following sections. Once the requirements are meet, the next step is execute the script `apply_terraform.sh`. This script receives the environment you want to creat through params. The environment accepted values are `dev`, `staging`, `prod`. Each environment has different types of vm defined and a topoly to assure fault tolerance on the vault.
 
+To destroy de infrastructure, you use the script `destroy_terraform.sh` with the environment you want to destroy through params as well as you do with the script `apply_terraform.sh`.
+
+Examples
+
+- `apply_terraform.sh dev`
+- `destroy_terraform.sh dev`
+
+## Terraform sensitive vairiables
+
+At the project root, you must have the file terraform.tfvars with the following content:
+
+```bash
+project_id       = "a-project-id"
+region           = "us-east4"
+vault_region     = "us-central1"
+repo_name        = "registry name"
+repo_description = "artifacts registry description"
+```
+
 ## Terraform Service Account and Artifact Registry Roles
 
 ### A. Service Account to Execute Terraform
@@ -50,11 +69,11 @@ gcloud iam service-accounts keys create terraform-backend-key.json --iam-account
 > It also requires a `.env` file inside the `scripts/` directory with the following content:
 
 ```env
-PROJECT_ID=arquisoftv-microservice
+PROJECT_ID=a-project-id
 SA_NAME=terraform-backend-executor
 AWS_ACCESS_KEY_ID="anaccesskey"
 AWS_SECRET_ACCESS_KEY="asecretkey"
-AWS_REGION="us-west-2"
+AWS_REGION="us-east-1"
 ```
 
 ---
